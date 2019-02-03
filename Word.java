@@ -1,9 +1,11 @@
 package lab2;
 
+import java.io.IOException;
+
 public class Word {
 	
 	private String theWord = "bajs";
-	private int counts = 0; // counts how often a word occurs in text
+	private int counts = 0; //counts how often a word occurs in text
 	private static int outputFormat = 0;
 	//classvariabel, för den är underlined i labbanvisningar
 	// static, varje ord har inte sitt eget putputformat
@@ -20,16 +22,7 @@ public class Word {
 		counts = 1;
 		
 		
-		// denna Word är typ klar lägg det som är nedanför i kommentarer i main
-		
-		//allt i main{
-		// strängen man klippte av från main
-		// göra ett ord av det
-		//skicka tillbaka
-		// loopa igenom arayyen ordd för ord i main
-		//}
-		
-		
+		// Word är klar
 	}
 	
 	
@@ -67,7 +60,7 @@ public class Word {
 		//classmetod, för den är underlined i labbanvisingar
 		// should change the value of outputFormat to 0 or 1 for all instances of Word
 		// metoden gör att användaren väljer hur resultatet av ordet ska visas
-		// j är valet användaren har gjort
+		// j är valet användaren har gjort i main, valAvOutput
 		
 		outputFormat = j;
 		
@@ -96,6 +89,15 @@ public class Word {
 		return " ERROR, output format is not 0 or 1 ";//kolla labben vad som ska ske hhär
 		// om man skrev t.ex 5, return this
 	}
+	
+	
+
+	
+	
+	
+	
+	
+	
 	
 
 }
