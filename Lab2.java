@@ -82,13 +82,25 @@ public class Lab2 {
 	   {
 		   
 	   }
+	   
 	   if(list[0].equals("load"))
 	   {
 		  aFile = new File(list[1]);
 		  
+			  try
+			  {
+				  aFile.createNewFile();
+			  }
+			  catch(IOException e)
+			  {
+				 System.out.println(" IO Exception"); // if an error occurs
+			  }
+		  
 		  myFileReader = new FileReader(aFile); //myFileReader läser av innehållet i aFile
- 
+		  // lägg till kod för om filen inte finns
 	   }
+	 
+	   
 	   if(.equals(save))
 	   {
 		   
@@ -149,6 +161,3 @@ public class Lab2 {
 	
 	
 }
-
-
-
