@@ -6,16 +6,11 @@ import java.io.*;
 public class Dictionary {
 	
 	private ArrayList<Word> theDictionary;
+	// contains all the instances of Word, each instance (objekt)contains one word
 	private BufferedWriter outputWriter; // write out content of theDictionary using method toString()
 	
 	
-	public default Dictionary()
-	{
-
-		
-	}
-	
-	public String Dictionary(String arg1)
+	public String Dictionary(String arg1) throws IOException
 	{
 		
 		
@@ -29,11 +24,46 @@ public class Dictionary {
 		
 	}
 	
+	public int numberOfWords()
+	{
+		
+	}
 	
+	public void removeDuplicates()
+	{
+		
+	}
 	
+	public String countOccurences()
+	{
+		
+	}
 	
+	public void sortDictionaryByCounts()
+	{
+		
+	}
 	
+	public void setFileName(String a)
+	{
 	
+		File nameOfFile = new File(theDictionary);
+		
+		
+		
+		// outputwriter
+		// try catch
+	}
+	
+	public void saveFile()
+	{
+		
+	}
+	
+	public String toString()
+	{
+	// skapar string med allt som ska skrivas ut
+	}
 	
 	
 	

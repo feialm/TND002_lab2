@@ -8,6 +8,9 @@
 package lab2;
 
 import java.io.*; //så att BufferedReader och InputStreamReader ska fungera
+import java.io.File;
+import java.io.FileNotFoundException;
+
 
 public class Lab2 {
 	
@@ -16,6 +19,9 @@ public class Lab2 {
     
 	static File aFile; // måste vara static så att den nås
 	static FileReader myFileReader;//skapar myFileReader som läser av filen
+
+	boolean result = false;
+	
 	
 	// questionToUser är en global class konstant
    static  String questionToUser = "You have the following options :\n"
@@ -96,19 +102,19 @@ public class Lab2 {
 				 System.out.println("IO Exception"); // if an error occurs
 			  }
 		  
-		  myFileReader = new FileReader(aFile); //myFileReader läser av innehållet i aFile
-		  
-			  if(myFileReader == null) // om ingen textsträng finns
-			  {
-				  System.out.println("No such file exists");
-			  }
-			  
-			  //lägg till kod för om filen inte existerar
-		  
-		  
-		  
-		  
-	   }
+		  	if(!(aFile.exists())) //testar om filen existerar eller ej
+		  	{
+		  		System.out.println("No such file exists "); 		
+		  	}
+		  	
+		  	myFileReader = new FileReader(aFile); //myFileReader läser av innehållet i aFile
+		  	
+		  //. The source file ”Text.txt” consists of many lines.
+		  // You read in the lines one after another and concatenate them into one string
+		  // making sure that there is at least one empty space between each of them.
+	
+		  	
+	   }myFileReader.close();
 	 
 	   
 	   if(.equals(save))
@@ -166,8 +172,9 @@ public class Lab2 {
 		return answerByUser;
 	}
 	
-	
 
 	
 	
+	
 }
+
