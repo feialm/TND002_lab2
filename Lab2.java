@@ -20,7 +20,7 @@ public class Lab2 {
 	static File aFile; // måste vara static så att den nås
 	static FileReader myFileReader;//skapar myFileReader som läser av filen
 
-	boolean result = false;
+
 	
 	
 	// questionToUser är en global class konstant
@@ -107,14 +107,21 @@ public class Lab2 {
 		  		System.out.println("No such file exists "); 		
 		  	}
 		  	
-		  	myFileReader = new FileReader(aFile); //myFileReader läser av innehållet i aFile
+		  	myFileReader = new FileReader(aFile); //skapar läsaren myFileReader som läser av innehållet i aFile
+
 		  	
-		  //. The source file ”Text.txt” consists of many lines.
-		  // You read in the lines one after another and concatenate them into one string
-		  // making sure that there is at least one empty space between each of them.
-	
+		  	//Gör en reader som läser av all text, till EN sträng
+		  	BufferedReader reader = new BufferedReader(new FileReader(aFile));
+			String aLine;
+			String lineOfText;
+			// !=null, aLine = reader.readLine() ska inte bli nulll, spara tills stöter på tom rad
+			while (!((aLine = reader.readLine())==null))
+			{
+				// sparar aLine till en enda sträng
+				lineOfText = lineOfText + " " +  aLine;	
+			}			
 		  	
-	   }myFileReader.close();
+	   }myFileReader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den
 	 
 	   
 	   if(.equals(save))
