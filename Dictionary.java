@@ -10,7 +10,7 @@ public class Dictionary {
 	private BufferedWriter outputWriter; // write out content of theDictionary using method toString()
 	// putputWriter ska skriva ut
 	
-	public Dictionary(String arg1)
+	public Dictionary(String arg1) //don't return anything, so don't need any type before Dictionarym just public
 	{
 		
 		this.addWords(arg1);
@@ -79,6 +79,7 @@ public class Dictionary {
 	
 	public String countOccurences()
 	{
+		return "bajs";
 		
 	}
 	
@@ -105,7 +106,11 @@ public class Dictionary {
 	
 	public String toString()
 	{
-	// skapar string med allt som ska skrivas ut
+	
+		
+		
+		s
+		// skapar string med allt som ska skrivas ut
 	}
 	
 	
