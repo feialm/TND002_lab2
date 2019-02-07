@@ -8,8 +8,9 @@ public class Dictionary {
 	
 	private ArrayList<Word> theDictionary;
 	// contains all the instances of Word, each instance (objekt)contains one word
-	private BufferedWriter outputWriter; // write out content of theDictionary using method toString()
+	private FileWriter outputWriter; // write out content of theDictionary using method toString()
 	// putputWriter ska skriva ut
+	// står i labbinstruktionen vi ska ha BufferedWriter men det fungerar ej så har FileWriter istället
 	
 	
 	public Dictionary()
@@ -21,7 +22,7 @@ public class Dictionary {
 	
 	public Dictionary(String arg1) //don't return anything, so don't need any type before Dictionarym just public
 	{
-		
+		theDictionary = new ArrayList<Word>();
 		this.addWords(arg1);
 		
 	}
@@ -50,7 +51,6 @@ public class Dictionary {
 	{
 		return theDictionary.size(); //size() returns number of elements in list theDictionary
 	}
-	
 	
 	
 	
@@ -84,7 +84,6 @@ public class Dictionary {
 			}	
 		}		
 	}
-	
 	
 	
 	
@@ -152,58 +151,65 @@ public class Dictionary {
 			}	
 		}	
 	}
+
 	
-	
-	
-	
-	
+
 	
 	public void setFileName(String filename) throws IOException
 	{
-	
 		try
-		{
-			
+		{		
+		outputWriter = new FileWriter(new File(filename));		
 		}
-		catch
+		catch(IOException err)
 		{
-			
-			
+			System.out.println("Something went wrong!");
 		}
-		
-		
-		
-		// outputwriter
 	}
 	
 	
 	
 	
+
 	
-	
-	
-	public void saveFile()
+	public void saveFile() throws IOException
 	{
-		
-		
-		
+		// metoden saveFile sparar en sträng som har skickats från metoden toString
+		try
+		{	
+			outputWriter.write(theDictionary.toString());
+		}
+		catch(IOException err)
+		{
+			System.out.println("ERROR when saving the file!");
+		}	
 	}
 	
 	
 	
-	
-	
+
 	
 	
 	public String toString()
 	{
-	
 		
-		// skapar string med allt som ska skrivas ut
+		// först till theDictionary och number1 sen hämta fakta från countOccurences
+		
+		int howmanywords1 = numberOfWords();
+		String number1 = countOccurences();
+		
+		// number2 till theDictionary kalla på funktionen removeDuplicates sen hämta fakta från countOccurences
+	
+		this.removeDuplicates(); // aktivera funktionen
+		int howmanywords2 = numberOfWords();
+		String number2 = countOccurences();
+		
+		String result = String.format("Total words :" + howmanywords1 + " and total occurences " + number1 + "\n" +
+				"Total words :" + howmanywords2 + " and total occurences " + number2);   
+		
+		return result; 
+		
 	}
-	
-	
-	
 	
 	
 

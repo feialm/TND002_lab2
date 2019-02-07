@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Word {
 	
-	private String theWord = "bajs";
+	private String theWord = "Hej";
 	private int counts = 0; //counts how often a word occurs in text
 	private static int outputFormat = 0;
 	//classvariabel, för den är underlined i labbanvisningar

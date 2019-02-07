@@ -12,6 +12,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 
+
+
+/**
+ * 
+ * Sökvägen till filen
+C:\Users\Fei Alm\Documents\TND002\Lab2\text.txt
+*/
 public class Lab2 {
 	
     //declare a consoleReader, alla funktioiner i class Lab2 som läser i console kan nå denna
@@ -19,10 +26,8 @@ public class Lab2 {
     
 	public static File aFile; // måste vara static så att den nås
 	public static FileReader myFileReader;//skapar myFileReader som läser av filen
-	public String saveFileName; // när man sparar en fil och tillger den ett filnamn
 
 
-	
 	
 	// questionToUser är en global class konstant
    static  String questionToUser = "You have the following options :\n"
@@ -62,25 +67,27 @@ public class Lab2 {
 		 * Här börjar part B, C
 		 ***************************/
 		Dictionary myDictionary = new Dictionary();
+		String [] list;
+		BufferedReader reader = null;
 		
 		do
 		{
 			
-		System.out.println(questionToUser);
-		BufferedReader inputToLab = new BufferedReader(new InputStreamReader(System.in));
-		String answerInput = inputToLab.readLine();
 			
-		answerInput = new String(); // ny sträng för option
+		System.out.println(questionToUser);
+			
+		String answerInput = new String(); // ny sträng för option
 		
 		//anropar consoleInput och testar om det skrivs ut valet man skrev in
 		answerInput = Lab2.consoleInput().toLowerCase(); //sparar resultatet som man fick tillbaka
+		System.out.println(answerInput + "      ekjleklfklflkef");
 		
 		//vissa val är i fler ä nett ord, split ordet och dela upp i en array;
 		// kommandon i första slot
 		// filnamn etc o slot två
 		
-		String[]list = answerInput.split(" +");
 		
+		list = answerInput.split(" +");
 		
 		if (list[0].equals(""))
 		{
@@ -95,29 +102,27 @@ public class Lab2 {
 	   
 	   if(list[0].equals("load"))
 	   {
-		  aFile = new File(list[1]);
+		   
+		   aFile = new File(list[1]);
 		  	  
-		  	try
+		  	/**try
 			  {
 				  aFile.createNewFile();
 			  }
 			  catch(IOException e)
 			  {
 				 System.out.println("IO Exception"); // if an error occurs
-			  }
+			  } **/
 		  
 		  	if(!(aFile.exists())) //testar om filen existerar eller ej
 		  	{
 		  		System.out.println("No such file exists "); 		
 		  	}
 		  	
-		  	myFileReader = new FileReader(aFile); //skapar läsaren myFileReader som läser av innehållet i aFile
-
-		  	
 		  	//Gör en reader som läser av all text, till EN sträng
-		  	BufferedReader reader = new BufferedReader(new FileReader(aFile));
+		  	reader = new BufferedReader(new FileReader(aFile));
 			String aLine;
-			String lineOfText;
+			String lineOfText = "";
 			// !=null, aLine = reader.readLine() ska inte bli nulll, spara tills stöter på tom rad
 			while (!((aLine = reader.readLine())==null))
 			{
@@ -125,24 +130,25 @@ public class Lab2 {
 				lineOfText = lineOfText + " " +  aLine;	
 			}			
 		  	
-	   }myFileReader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den
+			System.out.println(lineOfText+ "              xbhwckew");
+			
+			myDictionary = new Dictionary(lineOfText);
+			
+			
+			
+		reader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den	
+	   }
 	 
 	   
 	   if(list[0].equals("save"))
 	   { 
-		   saveFileName = list[1];
-		   
-		  myDictionary.setFileName(saveFileName);
-		   
-		   
-		   
-		   
-		   
-		   //read INTE write
-		  //man ska skriva save + namn på en textfil
-		  // spara i gammal textfil om namnet är samma eller skapa ny om man väljer ett nytt namn
-		   
-		   
+		  
+			String saveFileName; // när man sparar en fil och tillger den ett filnamn
+			saveFileName = list[1];
+			   
+			myDictionary.setFileName(saveFileName);
+			myDictionary.saveFile();
+			   
 	   }
 	   if(list[0].equals(1))
 	   {
@@ -170,7 +176,7 @@ public class Lab2 {
 	   }
 	    
 		
-		}while (!answerInput.equals("end"));
+		}while (!list[0].equals("end"));
 		
 	}
 	
