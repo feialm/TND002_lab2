@@ -17,8 +17,9 @@ public class Lab2 {
     //declare a consoleReader, alla funktioiner i class Lab2 som läser i console kan nå denna
 	public static BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
     
-	static File aFile; // måste vara static så att den nås
-	static FileReader myFileReader;//skapar myFileReader som läser av filen
+	public static File aFile; // måste vara static så att den nås
+	public static FileReader myFileReader;//skapar myFileReader som läser av filen
+	public String saveFileName; // när man sparar en fil och tillger den ett filnamn
 
 
 	
@@ -31,9 +32,7 @@ public class Lab2 {
 	+ "Remove multiple occurences : type '3'\nSort : type '4'\nList occurences : type '5'\nYour choice : ";
 	 // Your choice, after that, user choose one of the alternatives
 
-    
-
-    
+   
 	public static void main(String[] args)throws IOException {
 		
 		
@@ -58,13 +57,18 @@ public class Lab2 {
 		// anropa increase counts if samma ord hittas igen
 		// skapa nytt objekt för varje nytt ord man skapar
 		
-		//String aline;
+
+		/***************************
+		 * Här börjar part B, C
+		 ***************************/
+		Dictionary myDictionary = new Dictionary();
 		
-		//String[]arrayOfWords = theWord;
-		
-		String answerInput = "en sträng :)";
 		do
 		{
+			
+		System.out.println(questionToUser);
+		BufferedReader inputToLab = new BufferedReader(new InputStreamReader(System.in));
+		String answerInput = inputToLab.readLine();
 			
 		answerInput = new String(); // ny sträng för option
 		
@@ -124,31 +128,43 @@ public class Lab2 {
 	   }myFileReader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den
 	 
 	   
-	   if(.equals(save))
+	   if(list[0].equals("save"))
+	   { 
+		   saveFileName = list[1];
+		   
+		  myDictionary.setFileName(saveFileName);
+		   
+		   
+		   
+		   
+		   
+		   //read INTE write
+		  //man ska skriva save + namn på en textfil
+		  // spara i gammal textfil om namnet är samma eller skapa ny om man väljer ett nytt namn
+		   
+		   
+	   }
+	   if(list[0].equals(1))
 	   {
 		   
 	   }
-	   if(.equals(1))
+	   if(list[0].equals(2))
 	   {
 		   
 	   }
-	   if(.equals(2))
+	   if(list[0].equals(3))
 	   {
 		   
 	   }
-	   if(.equals(3))
+	   if(list[0].equals(3))
 	   {
 		   
 	   }
-	   if(.equals(3))
+	   if(list[0].equals(4))
 	   {
 		   
 	   }
-	   if(.equals(4))
-	   {
-		   
-	   }
-	   if(.equals(5))
+	   if(list[0].equals(5))
 	   {
 		   
 	   }
@@ -161,7 +177,7 @@ public class Lab2 {
 	
 	
 	
-	static String consoleInput()throws IOException
+	static String consoleInput()throws IOException // Part A???
 	{
 		String answerByUser = "en sträng";
 		//fångar buggar, fel
@@ -184,4 +200,3 @@ public class Lab2 {
 	
 	
 }
-
