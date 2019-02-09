@@ -9,27 +9,26 @@ public class Dictionary {
 	private ArrayList<Word> theDictionary;
 	// contains all the instances of Word, each instance (objekt)contains one word
 	private FileWriter outputWriter; // write out content of theDictionary using method toString()
-	// putputWriter ska skriva ut
+	// outputWriter ska skriva ut
 	// står i labbinstruktionen vi ska ha BufferedWriter men det fungerar ej så har FileWriter istället
 	
 	
-	public Dictionary()
-	{
+	public Dictionary() {
+		
 		theDictionary = new ArrayList<Word>();
 		
 	}
 	
 	
-	public Dictionary(String arg1) //don't return anything, so don't need any type before Dictionarym just public
-	{
+	public Dictionary(String arg1) {
+		 //don't return anything, so don't need any type before Dictionarym just public
 		theDictionary = new ArrayList<Word>();
 		this.addWords(arg1);
 		
 	}
 
 	
-	public void addWords(String arg2)
-	{
+	public void addWords(String arg2) {
 		String[] listOfIndividualWords = arg2.split(" +");
 		
 		// listOfIndividualWords.length hur många ord i strängen
@@ -47,16 +46,15 @@ public class Dictionary {
 	
 	
 	
-	public int numberOfWords()
-	{
+	public int numberOfWords() {
+		
 		return theDictionary.size(); //size() returns number of elements in list theDictionary
 	}
 	
 	
 	
 	
-	public void removeDuplicates()
-	{
+	public void removeDuplicates() {
 
 		for(int j = 0; j <theDictionary.size(); j++)
 		{
@@ -65,8 +63,9 @@ public class Dictionary {
 			//testa med debuggern om dessa looparna är okej
 			for(int i =j+1; i< theDictionary.size() ; i++)
 			{
-				if(compareWords.equals(theDictionary.get(i)))
+				if(compareWords.getWord().toLowerCase().equals(theDictionary.get(i).getWord().toLowerCase()))
 				{
+					// compareWords.getWord() tar ordet plockar fram som sträng
 					
 					for( int k = 0; k < theDictionary.get(i).getCounts(); k++ )
 					{
@@ -89,44 +88,42 @@ public class Dictionary {
 	
 	
 	
-	public String countOccurences()
-	{
+	public String countOccurences() {
 
-		int M = 1;//how many words that occur N times
+		Integer M = 0;//how many words that occur N times
 		int N=0; //how many times a word occurs
-		int howmanyOccurences[] = new int[theDictionary.size()]; //skapar ny array
-		int compareOccurences[] = new int[theDictionary.size()];
+		// int howmanyOccurences[] = new int[theDictionary.size()]; //skapar ny array
+		// int compareOccurences[] = new int[theDictionary.size()];
 		
 		for(int i = 0; i <theDictionary.size(); i++ )
 		{
-			howmanyOccurences[i] = theDictionary.get(i).getCounts();
+			M += theDictionary.get(i).getCounts();
 			
-			for(int j = i+1; j < theDictionary.size(); j++)
+			// howmanyOccurences[i] = theDictionary.get(i).getCounts();
+			
+			/** for(int j = i+1; j < theDictionary.size(); j++)
 			{
 				compareOccurences[j] = theDictionary.get(j).getCounts();
 				
 				if(compareOccurences[j]==howmanyOccurences[i])
 				{
 					
-					//turn how many times a word occur to an int
-					
+					//turn how many times a word occur to an int	
 					N = howmanyOccurences[i];
-					M++;
-					
+					M++;		
 				}		
-			}	
-
+			} */
 		}
 		// ska den vara här?
-		String returningOccurences = String.format("There are " + M + " words that occured " + N + " times.");
-		return returningOccurences;		
+		//String returningOccurences = String.format("There are " + M + " words that occured " + N + " times.");
+		
+		return M.toString();		
 	}
 	
 	
 	
 
-	public void sortDictionaryByCounts()
-	{
+	public void sortDictionaryByCounts() {
 		// sortDictionaryByCounts() should sort the entries of theDictionary by
 		// their number of counts. After sorting, the first entry should be that with
 		// the largest number of counts.
@@ -155,8 +152,9 @@ public class Dictionary {
 	
 
 	
-	public void setFileName(String filename) throws IOException
-	{
+	public void setFileName(String filename) throws IOException {
+		//när man har skrivit save aName, sparas det namnet man man har valt till filen
+		
 		try
 		{		
 		outputWriter = new FileWriter(new File(filename));		
@@ -172,45 +170,49 @@ public class Dictionary {
 	
 
 	
-	public void saveFile() throws IOException
-	{
-		// metoden saveFile sparar en sträng som har skickats från metoden toString
+	public void saveFile() throws IOException {
+		//metoden saveFile sparar en sträng som har skickats från metoden toString
 		try
 		{	
-			outputWriter.write(theDictionary.toString());
+			for(int i=0; i < theDictionary.size(); i++)
+			{
+			outputWriter.write(theDictionary.get(i).getWord() + " ");
+			// kallar på metiden outputWriter som hämtar ett ord och skriver ut det
+			// lägger till ett " " så att det blir mellanslag mellan varje ord
+			// lägger in det i ny fil som man sparar texten i
+			
+			}
 		}
 		catch(IOException err)
 		{
 			System.out.println("ERROR when saving the file!");
-		}	
+		}
+		outputWriter.close();
 	}
 	
 	
 	
-
 	
-	
-	public String toString()
-	{
+	public String toString() {
 		
-		// först till theDictionary och number1 sen hämta fakta från countOccurences
-		
-		int howmanywords1 = numberOfWords();
-		String number1 = countOccurences();
-		
-		// number2 till theDictionary kalla på funktionen removeDuplicates sen hämta fakta från countOccurences
-	
-		this.removeDuplicates(); // aktivera funktionen
-		int howmanywords2 = numberOfWords();
+		int number1 = numberOfWords();
 		String number2 = countOccurences();
 		
-		String result = String.format("Total words :" + howmanywords1 + " and total occurences " + number1 + "\n" +
-				"Total words :" + howmanywords2 + " and total occurences " + number2);   
+		String result = String.format("Total words :" + number1 + " and total occurences " + number2 + "\n" );   
 		
-		return result; 
+			for(int i=0; i < theDictionary.size(); i++)
+			{
+				result+= theDictionary.get(i).toString() + " ";
+				//lägger på alla ord innan return sträng
+				// hela texten efter statistiken
+				// toString tar ordet ut textfilen med funktionen get() för att bygga upp en sträng
+	
+			}
+			
+			
+			return result; 
 		
 	}
-	
-	
+		
 
-}
+} //måsvinge till class dictionary

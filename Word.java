@@ -1,20 +1,21 @@
 package lab2;
 
-import java.io.IOException;
+//import java.io.IOException;
 
 public class Word {
 	
 	private String theWord = "Hej";
+	
 	private int counts = 0; //counts how often a word occurs in text
+	
 	private static int outputFormat = 0;
+	
 	//classvariabel, för den är underlined i labbanvisningar
 	// static, varje ord har inte sitt eget putputformat
 	//ändrar man t.ex outputformat gäller det för alla ord man skrivit in
 	
-	public Word(String oneWordFromText)
-	{
-		// constructor som ska anropas, när new Words
-		// göra saker med nya Word
+	public Word(String oneWordFromText) {
+		// constructor som ska anropas, när new Word
 		
 		// när new word i main, ska den sparas här
 		// lägger varje ord i ett litet objekt
@@ -34,41 +35,33 @@ public class Word {
 	}
 	
 	public int getCounts()
-	{
-		
+	{	
 		
 		return counts;
 	}
 	
 	
-	public void increaseCounts()
-	{
+	
+	
+	public void increaseCounts(){
 		// increase value of counts by 1
 		
-		
-		
-		
 		counts++;
-		
-		
-		
 	}
 	
 	
-	public static void changeOutputFormat(int j)
-	{
+	
+	public static void changeOutputFormat(int j) {
 		//classmetod, för den är underlined i labbanvisingar
 		// should change the value of outputFormat to 0 or 1 for all instances of Word
 		// metoden gör att användaren väljer hur resultatet av ordet ska visas
 		// j är valet användaren har gjort i main, valAvOutput
 		
-		outputFormat = j;
-		
+		outputFormat = j;	
 	}
 	
 	
-	public String toString()
-	{
+	public String toString() {
 		
 		if( outputFormat == 0)
 		{
@@ -90,14 +83,5 @@ public class Word {
 		// om man skrev t.ex 5, return this
 	}
 	
-	
 
-	
-	
-	
-	
-	
-	
-	
-
-}
+}//måsvinge till class Word

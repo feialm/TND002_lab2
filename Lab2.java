@@ -9,16 +9,9 @@ package lab2;
 
 import java.io.*; //så att BufferedReader och InputStreamReader ska fungera
 import java.io.File;
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 
 
-
-
-/**
- * 
- * Sökvägen till filen
-C:\Users\Fei Alm\Documents\TND002\Lab2\text.txt
-*/
 public class Lab2 {
 	
     //declare a consoleReader, alla funktioiner i class Lab2 som läser i console kan nå denna
@@ -28,7 +21,6 @@ public class Lab2 {
 	public static FileReader myFileReader;//skapar myFileReader som läser av filen
 
 
-	
 	// questionToUser är en global class konstant
    static  String questionToUser = "You have the following options :\n"
 	+ "End : type 'end'\nLoad from file : type 'load' followed by filename\n"
@@ -40,8 +32,11 @@ public class Lab2 {
    
 	public static void main(String[] args)throws IOException {
 		
+		/**
+		PART A ÄR KOD FÖR ATT TESTA ATT ALLA FUNNKTIONER FUNGERAR ATT KOPPLA IHOP 
+		**/	
 		
-		// PART A ÄR KOD FÖR ATT TESTA ATT ALLA FUNNKTIONER FUNGERAR ATT KOPPLA IHOP
+		/*
 		System.out.println("Välj 0 eller 1: ");// Part A
 		BufferedReader val = new BufferedReader(new InputStreamReader(System.in));// Part A
 		String valAvOutput = val.readLine();// Part A
@@ -61,8 +56,10 @@ public class Lab2 {
 		// equals methoden, getWord plocka fram den, i foor loop
 		// anropa increase counts if samma ord hittas igen
 		// skapa nytt objekt för varje nytt ord man skapar
+		*/
 		
-
+		
+		
 		/***************************
 		 * Här börjar part B, C
 		 ***************************/
@@ -72,127 +69,125 @@ public class Lab2 {
 		
 		do
 		{
+				
+			String answerInput = new String(); // ny sträng för option
+			
+			//anropar consoleInput, ställa frågan
+			//och testar om det skrivs ut valet man skrev in
+			answerInput = Lab2.consoleInput().toLowerCase(); //sparar resultatet som man fick tillbaka
+			
+			//System.out.println(answerInput + "      LALALALALLAALLA"); //fulbugg kontrollera input
+			
+			//vissa val är i fler än ett ord, split ordet och dela upp i en array;
+			// kommandon i första slot
+			// filnamn etc o slot två
 			
 			
-		System.out.println(questionToUser);
+			list = answerInput.split(" +");
 			
-		String answerInput = new String(); // ny sträng för option
-		
-		//anropar consoleInput och testar om det skrivs ut valet man skrev in
-		answerInput = Lab2.consoleInput().toLowerCase(); //sparar resultatet som man fick tillbaka
-		System.out.println(answerInput + "      ekjleklfklflkef");
-		
-		//vissa val är i fler ä nett ord, split ordet och dela upp i en array;
-		// kommandon i första slot
-		// filnamn etc o slot två
-		
-		
-		list = answerInput.split(" +");
-		
-		if (list[0].equals(""))
-		{
-			System.out.println("Something went wrong");
-		}
-		
-
-	   if(list[0].equals("end"))
-	   {
-		   
-	   }
-	   
-	   if(list[0].equals("load"))
-	   {
-		   
-		   aFile = new File(list[1]);
-		  	  
-		  	/**try
-			  {
-				  aFile.createNewFile();
-			  }
-			  catch(IOException e)
-			  {
-				 System.out.println("IO Exception"); // if an error occurs
-			  } **/
-		  
-		  	if(!(aFile.exists())) //testar om filen existerar eller ej
-		  	{
-		  		System.out.println("No such file exists "); 		
-		  	}
-		  	
-		  	//Gör en reader som läser av all text, till EN sträng
-		  	reader = new BufferedReader(new FileReader(aFile));
-			String aLine;
-			String lineOfText = "";
-			// !=null, aLine = reader.readLine() ska inte bli nulll, spara tills stöter på tom rad
-			while (!((aLine = reader.readLine())==null))
+			if (list[0].equals(""))
 			{
-				// sparar aLine till en enda sträng
-				lineOfText = lineOfText + " " +  aLine;	
-			}			
-		  	
-			System.out.println(lineOfText+ "              xbhwckew");
-			
-			myDictionary = new Dictionary(lineOfText);
-			
-			
-			
-		reader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den	
-	   }
-	 
-	   
-	   if(list[0].equals("save"))
-	   { 
-		  
-			String saveFileName; // när man sparar en fil och tillger den ett filnamn
-			saveFileName = list[1];
+				System.out.println("Something went wrong");
+			}
+			else if(list[0].equals("load"))
+			{
 			   
-			myDictionary.setFileName(saveFileName);
-			myDictionary.saveFile();
+			   aFile = new File(list[1]);
 			   
-	   }
-	   if(list[0].equals(1))
-	   {
-		   
-	   }
-	   if(list[0].equals(2))
-	   {
-		   
-	   }
-	   if(list[0].equals(3))
-	   {
-		   
-	   }
-	   if(list[0].equals(3))
-	   {
-		   
-	   }
-	   if(list[0].equals(4))
-	   {
-		   
-	   }
-	   if(list[0].equals(5))
-	   {
-		   
-	   }
-	    
-		
+			  
+			  	if(!(aFile.exists())) //testar om filen existerar eller ej
+			  	{
+			  		System.out.println("No such file exists "); 		
+			  	}
+			  	
+			  	//Gör en reader som läser av all text, till EN sträng
+			  	reader = new BufferedReader(new FileReader(aFile));
+				String aLine;
+				String lineOfText = "";
+				// !=null, aLine = reader.readLine() ska inte bli nulll, spara tills stöter på tom rad
+				while (!((aLine = reader.readLine())==null))
+				{
+					// sparar aLine till en enda sträng
+					lineOfText = lineOfText + " " +  aLine;	
+				}			
+			  	
+				//System.out.println(lineOfText+ "              xbhwckew"); //fulbugg
+				
+				myDictionary = new Dictionary(lineOfText);
+				
+				
+				
+			reader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den	
+			}
+			else if(list[0].equals("save"))
+			{ 
+			  
+				String saveFileName; // när man sparar en fil och tillger den ett filnamn
+				
+				if(!(list[1].equals("text")))
+				{
+					//a control so user don't overwrite old file with same name
+					saveFileName = list[1];   
+					myDictionary.setFileName(saveFileName);
+					myDictionary.saveFile();
+				}
+				else
+				{
+					System.out.println("Can't overwrite a file!");
+				}
+				   
+			}
+			else if(list[0].equals("1"))
+			{
+				int a = 0;
+				Word.changeOutputFormat(a);
+				System.out.println(myDictionary.toString());
+				
+			}
+			else if(list[0].equals("2"))
+			{
+				int b = 1;
+				Word.changeOutputFormat(b);
+				System.out.println(myDictionary.toString());
+			}
+			else if(list[0].equals("3"))
+			{
+			   myDictionary.removeDuplicates();
+
+			}
+			else if(list[0].equals("4"))
+			{
+			   myDictionary.sortDictionaryByCounts();
+			}
+			else if(list[0].equals("5"))
+			{
+				System.out.println(myDictionary.countOccurences());
+			}
+			else //Add another word
+			{	
+				if(!(list[0].equals("end"))) {
+					myDictionary.addWords(list[0]); // skickar med till metoden
+				}
+			}
+		    
+			
 		}while (!list[0].equals("end"));
 		
-	}
+	}//måsvinge till main
 	
 	
 	
 	
-	static String consoleInput()throws IOException // Part A???
-	{
+	static String consoleInput()throws IOException {
 		String answerByUser = "en sträng";
 		//fångar buggar, fel
-		try {
-		//String?? för add word, followed bu filename etc?
-		System.out.println(questionToUser);
-		answerByUser = consoleReader.readLine();
+		try
+		{
+			//String?? för add word, followed by filename etc?
+			System.out.println(questionToUser);
+			answerByUser = consoleReader.readLine();
 		}
-		catch(IOException e) // e = exceptionobjekt, ta reda på en masssa fel om objektet
+		catch(IOException e) //e = exceptionobjekt, ta reda på en masssa fel om objektet
 		{
 			
 			return "";
@@ -202,7 +197,6 @@ public class Lab2 {
 	}
 	
 
+
 	
-	
-	
-}
+} //måsvinge till class Lab2
