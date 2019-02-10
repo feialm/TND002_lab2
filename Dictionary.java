@@ -153,7 +153,7 @@ public class Dictionary {
 
 	
 	public void setFileName(String filename) throws IOException {
-		//när man har skrivit save aName, sparas det namnet man man har valt till filen
+		//när man har skrivit save "aName", sparas det namnet man har valt till filen
 		
 		try
 		{		
@@ -177,7 +177,7 @@ public class Dictionary {
 			for(int i=0; i < theDictionary.size(); i++)
 			{
 			outputWriter.write(theDictionary.get(i).getWord() + " ");
-			// kallar på metiden outputWriter som hämtar ett ord och skriver ut det
+			// kallar på metoden outputWriter som hämtar ett ord och skriver ut det
 			// lägger till ett " " så att det blir mellanslag mellan varje ord
 			// lägger in det i ny fil som man sparar texten i
 			
@@ -202,16 +202,14 @@ public class Dictionary {
 		
 			for(int i=0; i < theDictionary.size(); i++)
 			{
-				result+= theDictionary.get(i).toString() + " ";
+				result = result + theDictionary.get(i).toString() + " \n";
 				//lägger på alla ord innan return sträng
 				// hela texten efter statistiken
 				// toString tar ordet ut textfilen med funktionen get() för att bygga upp en sträng
 	
 			}
 			
-			
 			return result; 
-		
 	}
 		
 

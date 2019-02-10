@@ -65,7 +65,7 @@ public class Word {
 		
 		if( outputFormat == 0)
 		{
-			String answer1 = String.format("The word is : " + theWord);
+			String answer1 = String.format("The word is : " + theWord + "\n");
 			
 			return answer1;
 		}
@@ -73,14 +73,14 @@ public class Word {
 		if( outputFormat == 1)
 		{
 			
-			String answer2 = String.format("The word " + theWord + " has occured " + counts + " times.");
+			String answer2 = String.format("The word: " + theWord + " has occured: " + counts + " times.");
 			
 			return answer2;
 		}
 		
 		
 		return " ERROR, output format is not 0 or 1 ";//kolla labben vad som ska ske hhär
-		// om man skrev t.ex 5, return this
+		// om man skrev t.ex 10, return this
 	}
 	
 

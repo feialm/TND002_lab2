@@ -33,7 +33,7 @@ public class Lab2 {
 	public static void main(String[] args)throws IOException {
 		
 		/**
-		PART A ÄR KOD FÖR ATT TESTA ATT ALLA FUNNKTIONER FUNGERAR ATT KOPPLA IHOP 
+		PART A ÄR KOD FÖR ATT TESTA ATT ALLA FUNKTIONER FUNGERAR ATT KOPPLA IHOP 
 		**/	
 		
 		/*
@@ -66,6 +66,7 @@ public class Lab2 {
 		Dictionary myDictionary = new Dictionary();
 		String [] list;
 		BufferedReader reader = null;
+		String command = "ett värde";		
 		
 		do
 		{
@@ -84,12 +85,14 @@ public class Lab2 {
 			
 			
 			list = answerInput.split(" +");
+			command = list[0]; // enklare förstå vad list[0] gör
 			
-			if (list[0].equals(""))
+			
+			if (command.equals(""))
 			{
 				System.out.println("Something went wrong");
 			}
-			else if(list[0].equals("load"))
+			else if(command.equals("load"))
 			{
 			   
 			   aFile = new File(list[1]);
@@ -119,12 +122,12 @@ public class Lab2 {
 				
 			reader.close(); // gjort en läsare, sen stänga, annars kanske inte andra kan läsa den	
 			}
-			else if(list[0].equals("save"))
+			else if(command.equals("save"))
 			{ 
 			  
 				String saveFileName; // när man sparar en fil och tillger den ett filnamn
 				
-				if(!(list[1].equals("text")))
+				if(!(command.equals("text")))
 				{
 					//a control so user don't overwrite old file with same name
 					saveFileName = list[1];   
@@ -137,41 +140,41 @@ public class Lab2 {
 				}
 				   
 			}
-			else if(list[0].equals("1"))
+			else if(command.equals("1"))
 			{
 				int a = 0;
 				Word.changeOutputFormat(a);
 				System.out.println(myDictionary.toString());
 				
 			}
-			else if(list[0].equals("2"))
+			else if(command.equals("2"))
 			{
 				int b = 1;
 				Word.changeOutputFormat(b);
 				System.out.println(myDictionary.toString());
 			}
-			else if(list[0].equals("3"))
+			else if(command.equals("3"))
 			{
 			   myDictionary.removeDuplicates();
 
 			}
-			else if(list[0].equals("4"))
+			else if(command.equals("4"))
 			{
 			   myDictionary.sortDictionaryByCounts();
 			}
-			else if(list[0].equals("5"))
+			else if(command.equals("5"))
 			{
 				System.out.println(myDictionary.countOccurences());
 			}
 			else //Add another word
 			{	
-				if(!(list[0].equals("end"))) {
+				if(!(command.equals("end"))) {
 					myDictionary.addWords(list[0]); // skickar med till metoden
 				}
 			}
 		    
 			
-		}while (!list[0].equals("end"));
+		}while (!(command.equals("end")));
 		
 	}//måsvinge till main
 	
