@@ -16,6 +16,7 @@ public class Lab2 {
 	
     //declare a consoleReader, alla funktioiner i class Lab2 som läser i console kan nå denna
 	public static BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+	// consoleReader kan läsa in svaret
     
 	public static File aFile; // måste vara static så att den nås
 	public static FileReader myFileReader;//skapar myFileReader som läser av filen
@@ -186,9 +187,8 @@ public class Lab2 {
 		//fångar buggar, fel
 		try
 		{
-			//String?? för add word, followed by filename etc?
-			System.out.println(questionToUser);
-			answerByUser = consoleReader.readLine();
+			System.out.println(questionToUser); // ställer frågorna(options)
+			answerByUser = consoleReader.readLine(); // läser in svaret, consoleReader läser in
 		}
 		catch(IOException e) //e = exceptionobjekt, ta reda på en masssa fel om objektet
 		{
