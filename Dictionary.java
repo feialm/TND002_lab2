@@ -152,17 +152,11 @@ public class Dictionary {
 	
 
 	
-	public void setFileName(String filename) throws IOException {
+	public void setFileName(String filename)throws IOException {
 		//när man har skrivit save "aName", sparas det namnet man har valt till filen
 		
-		try
-		{		
 		outputWriter = new FileWriter(new File(filename));		
-		}
-		catch(IOException err)
-		{
-			System.out.println("Something went wrong!");
-		}
+
 	}
 	
 	

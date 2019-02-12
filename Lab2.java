@@ -7,9 +7,8 @@
 
 package lab2;
 
-import java.io.*; //så att BufferedReader och InputStreamReader ska fungera
-import java.io.File;
 //import java.io.FileNotFoundException;
+import java.io.*; //så att BufferedReader och InputStreamReader ska fungera
 
 
 public class Lab2 {
@@ -132,7 +131,15 @@ public class Lab2 {
 				{
 					//a control so user don't overwrite old file with same name
 					saveFileName = list[1];   
+					try {
 					myDictionary.setFileName(saveFileName);
+					}
+					catch(IOException err) {
+						
+						System.out.println("Something wrong with the name!");
+						break;
+					}
+					
 					myDictionary.saveFile();
 				}
 				else
