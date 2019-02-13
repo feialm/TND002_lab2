@@ -1,7 +1,5 @@
 package lab2;
 
-//import java.io.IOException;
-
 public class Word {
 	
 	private String theWord = "Hej";

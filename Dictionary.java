@@ -11,7 +11,7 @@ public class Dictionary {
 	private FileWriter outputWriter; // write out content of theDictionary using method toString()
 	// outputWriter ska skriva ut
 	// står i labbinstruktionen vi ska ha BufferedWriter men det fungerar ej så har FileWriter istället
-	
+
 	
 	public Dictionary() {
 		
@@ -31,14 +31,24 @@ public class Dictionary {
 	public void addWords(String arg2) {
 		String[] listOfIndividualWords = arg2.split(" +");
 		
+		
+		String regex = "\\d+"; // \\d = any digit
+		
 		// listOfIndividualWords.length hur många ord i strängen
 		for(int i=0; i < listOfIndividualWords.length; i++)
 		{
 		
 			if(!(listOfIndividualWords[i].isEmpty()))
 			{	
-			theDictionary.add(new Word(listOfIndividualWords[i]));
-			// sparar word objektet i arrayen direkt
+			
+				
+				if(!(listOfIndividualWords[i].matches(regex) && !listOfIndividualWords[i].equals(null))) // spara endast ord, inga siffror
+				{
+					
+					theDictionary.add(new Word(listOfIndividualWords[i]));
+					// sparar word objektet i arrayen direkt
+					
+				}
 			}
 		}
 	}
@@ -52,14 +62,13 @@ public class Dictionary {
 	}
 	
 	
-	
+
 	
 	public void removeDuplicates() {
 
 		for(int j = 0; j <theDictionary.size(); j++)
 		{
 			Word compareWords = theDictionary.get(j);
-			
 			//testa med debuggern om dessa looparna är okej
 			for(int i =j+1; i< theDictionary.size() ; i++)
 			{
@@ -67,13 +76,15 @@ public class Dictionary {
 				{
 					// compareWords.getWord() tar ordet plockar fram som sträng
 					
+					/**
 					for( int k = 0; k < theDictionary.get(i).getCounts(); k++ )
 					{
 						compareWords.increaseCounts();
 						// if compareWords is 5, and theDictionary.get(i) is 2
 						// compareWords will be 7 due to calling at function increaseCounts
-					}
+					}*/
 					
+					compareWords.increaseCounts();
 					theDictionary.remove(i); //removes object when done counting
 					
 					i-=1;
@@ -84,11 +95,35 @@ public class Dictionary {
 		}		
 	}
 	
+
 	
 	
+	/**
+	public void removeDuplicates() {
+		
+		
+		for (int i = 0; i < theDictionary.size()-1; i++) {
+			
+			for (int j =i+1; j < theDictionary.size(); j++) {
+				
+				if( theDictionary.get(i).getWord().toLowerCase().contentEquals(theDictionary.get(j).getWord().toLowerCase())) {
+					
+					theDictionary.get(i).increaseCounts();
+					theDictionary.remove(j);
+					j = j-1;
+					
+				}	
+			}			
+		}
+	}
+	*/
 	
 	
-	public String countOccurences() {
+	/**
+	
+	/**
+	 * 
+	 * 	public String countOccurences() {
 
 		Integer M = 0;//how many words that occur N times
 		int N=0; //how many times a word occurs
@@ -112,12 +147,57 @@ public class Dictionary {
 					N = howmanyOccurences[i];
 					M++;		
 				}		
-			} */
+			}
 		}
 		// ska den vara här?
 		//String returningOccurences = String.format("There are " + M + " words that occured " + N + " times.");
 		
 		return M.toString();		
+	}
+
+	**/
+	
+	
+	public String countOccurences() {
+
+		Integer M = 0;//how many words that occur N times
+		int counter=1; //how many times a word occur
+		int N = 0;
+
+		String result = "";
+		
+
+		for (int i = 0; i < theDictionary.size(); i++) {
+			
+			if(theDictionary.get(i).getCounts() >= counter) {
+				counter = theDictionary.get(i).getCounts();
+			}		
+		}
+		
+		Integer[] array = new Integer[counter+1];
+		
+		// fyller array med nollor
+		for(int i = 0; i < array.length; i++) {
+			array[i]=0;
+		}
+		
+		for(int j = 0; j < array.length; j++) {
+			for (int i = 0; i < theDictionary.size(); i++ ) {
+				
+				if(theDictionary.get(i).getCounts()== j+1) {
+					array[j]++;
+				}
+			}
+			
+				if (array[j]!=0) {
+					
+					M = array[j];
+					N = j+1;
+					result+= "There are " + M + " words that occured " + N + " times. \n";
+				}
+		}
+		
+		return result;
 	}
 	
 	
@@ -127,23 +207,20 @@ public class Dictionary {
 		// sortDictionaryByCounts() should sort the entries of theDictionary by
 		// their number of counts. After sorting, the first entry should be that with
 		// the largest number of counts.
-		
-		int sortingA[] = new int[theDictionary.size()];
+	
 		
 		// sorting array
 		for(int pass = 1; pass <= theDictionary.size()-1; pass++ )
 		{
 
-			for(int k=0; k < theDictionary.size(); k++)
+			for(int k=0; k < theDictionary.size()-1; k++)
 			{
-
-				sortingA[k] = theDictionary.get(k).getCounts();
 				
-				if(sortingA[k] < sortingA[k+1])
+				if(theDictionary.get(k).getCounts() < theDictionary.get(k+1).getCounts())
 				{
-					int aux = sortingA[k];
-					sortingA[k]=sortingA[k+1];
-					sortingA[k+1]=sortingA[k];			
+					Word aux = theDictionary.get(k);
+					theDictionary.set(k, theDictionary.get(k+1));
+					theDictionary.set(k+1,aux);		
 				}	
 			}	
 		}	
@@ -190,9 +267,15 @@ public class Dictionary {
 	public String toString() {
 		
 		int number1 = numberOfWords();
-		String number2 = countOccurences();
+		int number2 = 0;
 		
-		String result = String.format("Total words :" + number1 + " and total occurences " + number2 + "\n" );   
+		for (int i = 0; i < theDictionary.size(); i++)
+		{
+			number2 = number2 + theDictionary.get(i).getCounts();
+			
+		}
+		
+		String result = String.format("Total words: " + number1 + " and total occurences " + number2  + " \n");   
 		
 			for(int i=0; i < theDictionary.size(); i++)
 			{

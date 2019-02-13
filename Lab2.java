@@ -73,7 +73,7 @@ public class Lab2 {
 				
 			String answerInput = new String(); // ny sträng för option
 			
-			//anropar consoleInput, ställa frågan
+			/**-----------anropar consoleInput, ställa frågan --------- **/
 			//och testar om det skrivs ut valet man skrev in
 			answerInput = Lab2.consoleInput().toLowerCase(); //sparar resultatet som man fick tillbaka
 			
